@@ -49,6 +49,7 @@ public class ClienteRestController {
 		Pageable pageable = PageRequest.of(page, 4);
 		//return clienteService.findAll(PageRequest.of(page, 4));
 		return clienteService.findAll(pageable);
+		
 	}
 	
 	//ResponseEntity<?> Se devuelve según la respuesta Http. ? es para devolver cualquier tipo de dato.
