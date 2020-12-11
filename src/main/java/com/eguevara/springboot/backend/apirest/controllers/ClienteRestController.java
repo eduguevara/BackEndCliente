@@ -131,7 +131,6 @@ public class ClienteRestController {
 			return new ResponseEntity<Map<String, Object>>(respuesta, HttpStatus.BAD_REQUEST);
 		}
 		
-		// Bad request
 		if (clienteActual == null) {
 			respuesta.put("Mensaje", "No se puede modificar el Cliente ID: ".concat(id.toString().concat(" no existe en la base de datos!")));
 			return new ResponseEntity<Map<String, Object>>(respuesta, HttpStatus.NOT_FOUND);
