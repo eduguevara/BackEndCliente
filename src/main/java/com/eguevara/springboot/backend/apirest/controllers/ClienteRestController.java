@@ -164,6 +164,8 @@ public class ClienteRestController {
 			respuesta.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
 			return new ResponseEntity<Map<String, Object>>(respuesta, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+		
+		//TODO revisar servicios
 		respuesta.put("Mensaje", "El cliente se ha borrado con éxito!");
 		return new ResponseEntity<Map<String, Object>>(respuesta, HttpStatus.OK);
 		
