@@ -1,5 +1,7 @@
 package com.eguevara.springboot.backend.apirest.controllers;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,7 +59,7 @@ public class ClienteRestController {
 	public ResponseEntity<?> show(@PathVariable Long id) {
 		Cliente cliente = null;
 		Map<String, Object> respuesta = new HashMap<>();
-		
+		System.out.println("impresion: "+id);
 		try {
 			cliente = clienteService.findById(id);
 		} catch (DataAccessException e) {
@@ -68,6 +70,7 @@ public class ClienteRestController {
 		
 		if(cliente == null) {
 			respuesta.put("Mensaje", "El Cliente ID: ".concat(id.toString().concat(" no existe en la base de datos!")));
+			respuesta.put("Mensaje", "El Cliente ID: ".concat(id.toString().concat(" no existe en la base de datos2!")));
 			return new ResponseEntity<Map<String, Object>>(respuesta, HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
@@ -170,4 +173,20 @@ public class ClienteRestController {
 		return new ResponseEntity<Map<String, Object>>(respuesta, HttpStatus.OK);
 		
 	}
+	@GetMapping("/prueba")
+public void prueba () {
+	
+		List <String> lista = new ArrayList<>();
+		lista.add("First");
+		lista.add("twoo");
+		lista.add("three");
+		
+		Collections.sort(lista, (String p1, String p2) -> p1.compareTo(p2));
+		
+		for (String a : lista) {
+			System.out.println("Lista: "+ a);
+		}
+		
+	 
+}
 }

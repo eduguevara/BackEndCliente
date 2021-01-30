@@ -8,12 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -40,16 +40,28 @@ public class Cliente implements Serializable{
 	@NotEmpty(message="No puede ser vacío")
 	private String email;
 	
+	@NotNull(message="No puede esta vacío")
 	@Column(name="create_at")
 	@Temporal(TemporalType.DATE)
 	private Date createAt;
 
 	//Asignamos la fecha del sistema al guardar en BBDD
-	@PrePersist
+	/*@PrePersist
 	public void prePersist() {
 		createAt = new Date();
-	}
+	}*/
 	
+	public Cliente(Long id, @NotEmpty(message = "No puede ser vacío") @Size(min = 3, max = 12) String nombre,
+			@NotEmpty(message = "No puede ser vacío") String apellido,
+			@Email @NotEmpty(message = "No puede ser vacío") String email) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -88,6 +100,10 @@ public class Cliente implements Serializable{
 
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
+	}
+
+	public Cliente() {
+		super();
 	}
 
 }
